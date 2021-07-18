@@ -9,6 +9,14 @@ class Tag extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'slug', 'color'];
+
+    //metodo para que la url no muestre el id
+    public function getRouteKeyName(){
+        return "slug";
+    }
+
+    
     //Relacion muchos a muchos 
     public function posts(){
         return $this->belongsToMany(Post::class);

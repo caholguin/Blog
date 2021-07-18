@@ -7,6 +7,15 @@
 @stop
 
 @section('content')
+
+    @if (session('info'))
+    <div class="alert alert-success alert-dismissible fade show">        
+        <strong>{{session('info')}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+    </div>
+    @endif
+
     <div class="card">
 
         <div class="card-header">
@@ -14,7 +23,7 @@
         </div>
 
         <div class="card-body">
-            <table class="table table-striped">
+            <table class="table table-striped border">
                 <thead>
                     <th>ID</th>
                     <th>Nombre</th>
