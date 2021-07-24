@@ -11,6 +11,15 @@
 @stop
 
 @section('content')
+
+    @if (session('info'))
+        <div class="alert alert-success alert-dismissible fade show">        
+            <strong>{{session('info')}}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+        </div>
+    @endif
+
     @livewire('admin.post-index')
 @stop
 

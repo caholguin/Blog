@@ -147,7 +147,12 @@ return [
     */
 
     'attributes' => [
-        'name' => 'nombre'
+        'name' => 'nombre',
+        'status' => 'estado',
+        'body' => 'cuerpo',
+        'extract' => 'extracto',
+        'tags' => 'etiquetas'
+        // 'file' => 'imagen'
     ],
 
 ];

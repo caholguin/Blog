@@ -9,121 +9,13 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <form action="{{route('admin.posts.store')}}" method="POST" autocomplete="off" enctype="multipart/form-data">
-                @csrf
-                <input  name="user_id" type="hidden" value="{{auth()->user()->id}}">
+            {!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off', 'files' => true]) !!}
 
-                <div class="form-group">
-                    <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese el nombre del post..." value="{{old('name')}}">
-                    
-                    @error('name')
-                     <small class="text-danger">{{$message}}</small>    
-                    @enderror
-                </div>
-                <div class="form-group ">
-                    <label for="">Slug</label>
-                    <input type="text" class="form-control" id="slug" name="slug" readonly placeholder="Ingrese el slug del post..." value="{{old('slug')}}">
-                
-                    @error('slug')
-                     <small class="text-danger">{{$message}}</small>    
-                    @enderror
-                </div>
+            @include('admin.posts.partials.form')
 
-                <div class="form-group ">
-                    <label for="category_id">Categoria</label>
-                    <select id="category_id" name="category_id" class="form-control" >                      
-                      <option value="">Seleccione una categoria...</option>
-                      @foreach ($categories as $category)
-                        <option value="{{$category->id}}">{{$category->name}} </option>
-                      @endforeach
-                    </select>
-
-                    @error('category_id')
-                     <small class="text-danger">{{$message}}</small>    
-                    @enderror
-                </div> 
-
-                <div class="form-group  ">
-                    <p class="font-weight-bold">Etiquetas</p>                
-                    @foreach ($tags as $tag)
-                        <label>                                                             
-                            <input type="checkbox" class=""  name="tags[]" value="{{$tag->id}}" >
-                            {{$tag->name}}                                                          
-                        </label>
-                    @endforeach                   
-
-                    @error('tags')
-                     <br>
-                     <small class="text-danger">{{$message}}</small>    
-                    @enderror
-                </div>
-
-                <div class="form-group ">
-                    <p class="font-weight-bold">Estado</p> 
-
-                    <label class="ml-4">
-                        <input class="form-check-input" type="radio" name="status" id="status" value="1" checked>
-                        Borrador
-                    </label>
-
-                    <label class="ml-4">
-                        <input class="form-check-input" type="radio" name="status"  value="2" >
-                        Publicado
-                    </label>
-
-                    @error('status')
-                    <br>
-                    <small class="text-danger">{{$message}}</small>    
-                    @enderror
-
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col">
-                        <div class="image-wrapper">
-                            <img id="picture" src="https://cdn.pixabay.com/photo/2021/06/20/12/22/coffee-6350849_960_720.jpg" alt="">
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="form-group">
-                            <label>Imagen que se mostrará en el post</label>
-                            <input class="form-control-file" type="file" name="file" id="file" accept="image/*">
-                            
-                            @error('file')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                        
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum explicabo impedit distinctio rem quae laudantium molestiae itaque sunt, iusto, autem et. Soluta tenetur hic ipsa, in doloribus eveniet distinctio possimus?</p>
-                    </div>
-                </div>
-
-                <div class="form-group ">
-                    <label>Extracto</label>
-                    <textarea class="form-control" name="extract" id="extract" cols="30" rows="10"></textarea>
-                
-                    @error('extract')
-                     <small class="text-danger">{{$message}}</small>    
-                    @enderror
-                </div>
-
-                <div class="form-group ">
-                    <label>Cuerpo del post</label>
-                    <textarea class="form-control" name="body" id="body" cols="30" rows="10"></textarea>
-                
-                    @error('body')
-                     <small class="text-danger">{{$message}}</small>    
-                    @enderror
-                
-                </div>             
-                
-                       
-                    <button type="submit" class="btn btn-primary">Crear post</button>
-                    <a class="btn btn-danger ml-2" href="{{route('admin.posts.index')}}">Cancelar</a>
-                
-            </form>
+            {!! Form::submit('Crear post', ['class' => 'btn btn-primary']) !!}
+            <a href="{{route('admin.posts.index')}}" class="btn btn-danger ml-2">Cancelar</a>
+            {!! Form::close() !!}       
         </div>
     </div>
 @stop
